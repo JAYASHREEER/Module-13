@@ -1,40 +1,70 @@
-# Exp.No:34  
-## PREFIX EVALUATION
+![image](https://github.com/user-attachments/assets/e1a74fc7-af70-4623-8702-671ca7b4cc07)Exp.No:34  
+PREFIX EVALUATION
 
----
-
-### AIM  
+AIM  
 To write a Python program to evaluate a user-given Prefix expression using a stack. The expression must contain operators such as Multiplication, Addition, and Subtraction.
 
----
+ALGORITHM
 
-### ALGORITHM
+1.Start.
+2.Read the prefix expression as a string input.
+3.Reverse the expression (since prefix is evaluated right to left).
+4.Initialize an empty stack.
+5.Traverse each character (token) in the reversed expression:
+If the token is a digit:
+Convert it to integer and push it onto the stack.
+If the token is an operator (+, -, or *):
+Pop the top two values from the stack (op1 and op2).
+Apply the operation:
+If +: result = op1 + op2
+If -: result = op1 - op2
+If *: result = op1 * op2
+Push the result back onto the stack.
+6.After all tokens are processed, the top of the stack will contain the final result.
+7.Print the prefix expression and the evaluation result.
+8.End.
 
-1. **Start the program.**
-2. Define a set of valid operators: `*, -, +, %, /, **`.
-3. Initialize an empty stack.
-4. Traverse the prefix expression from **right to left**:
-   - If the character is a **digit**, convert it to an integer and push it onto the stack.
-   - If the character is an **operator**, pop two elements from the stack.
-     - Apply the operator on the two popped operands.
-     - Push the result back onto the stack.
-   - If an invalid character is encountered, raise an error.
-5. After traversal, the stack should contain only **one element**.
-6. Return the **single element** as the evaluation result.
-7. **End the program.**
+PROGRAM
+OPERATORS=set(['*','-','+','%','/','**']) 
 
----
-
-### PROGRAM
-
-```
-
-
-```
-
-
-### OUTPUT
+def evaluate(expression):
+	
+	stack = []
 
 
+	for c in expression[::-1]:
 
-### RESULT
+		
+		if c not in OPERATORS:
+			stack.append(int(c))
+
+		else:
+			
+			
+			o1 = stack.pop()
+			o2 = stack.pop()
+
+			if c == '+':
+				stack.append(o1 + o2)
+
+			elif c == '-':
+				stack.append(o1 - o2)
+
+			elif c == '*':
+				stack.append(o1 * o2)
+
+			
+	return stack.pop()
+
+
+
+
+test_expression = input()
+print("Prefix Expression :",test_expression)
+print("Evaluation result :",evaluate(test_expression))
+
+OUTPUT
+![image](https://github.com/user-attachments/assets/f7a55d47-e39e-49c4-9296-c019977785ff)
+
+RESULT
+Thus,the Python program to evaluate a user-given Prefix expression using a stack. The expression must contain operators such as Multiplication, Addition, and Subtraction was successfully implemented and verified.
