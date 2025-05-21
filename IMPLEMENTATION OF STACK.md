@@ -1,31 +1,57 @@
-# Exp.No:31  
-## IMPLEMENTATION OF STACK
+Exp.No:31  
+IMPLEMENTATION OF STACK
 
----
+AIM  
+To write a Python program that evaluates a user-given prefix expression using a stack, handling two-digit numbers and binary operators (+, -, *, /, %) using a function prefix_Eval(x).
 
-### AIM  
-To write a Python program to implement a stack using a list and its built-in methods (`append()`, `pop()`).
+ALGORITHM
+1.Start.
+2.Read the prefix expression as input (space-separated).
+3.Split the expression into tokens (operators and operands).
+4.Reverse the list of tokens (since prefix evaluation starts from the right).
+5.Initialize an empty stack.
+6.For each token in the reversed list:
+If the token is a number:
+Convert it to integer and push onto the stack.
+If the token is an operator:
+Pop the top two elements from the stack.
+Apply the operator on them (first popped as operand1, second popped as operand2).
+Push the result back onto the stack.
+7.After processing all tokens, the result will be at the top of the stack.
+8.Return the final result.
+9.End.
 
----
+PROGOPERATORS=set(['*','-','+','/'])
+stack = []
 
-### ALGORITHM
 
-1. **Start the program.**
-2. **Define a class `st`** with the following methods:
-   - `push(self, num)`: Adds the number `num` to the stack.
-   - `pop(self)`: Removes and returns the top element from the stack.
-3. **Create a stack object `s`** using the class `st`.
-4. **Input the stack size**: Take an integer input `size` to define the size of the stack.
-5. **Loop through numbers from 1 to size**: Add only the odd numbers to the stack using the `push()` method.
-6. **Display the elements** in the stack after the loop completes.
-7. **Call `pop()`** to remove the top element from the stack and display the popped element.
-8. **Display the stack again** to show the remaining elements.
-9. **End the program.**
+    
+def prefix_Eval(x):
+    for c in x[::-1]:
+        if c not in OPERATORS:
+            stack.append(int(c))
+        else:
+            o1 = stack.pop()
+            o2 = stack.pop()
+            if c == '+':
+                stack.append(o1 + o2)
+            elif c == '-':
+                stack.append(o1 - o2)
+            elif c == '*':
+                stack.append(o1 * o2)
+            elif c == '/':
+                stack.append(o1 / o2)
+    return stack[0]
 
----
+m=input()
+print("The prefix expression is",m)
+n=m.split()
+print("The result is",prefix_Eval(n))
 
-### PROGRAM
+OUTPUT 
+![image](https://github.com/user-attachments/assets/bcbd5608-1e7b-4bf9-8d12-339d05b0714b)
 
-```
+RESULT 
+Thus,Python program that evaluates a user-given prefix expression using a stack, handling two-digit numbers and binary operators (+, -, *, /, %) using a function prefix_Eval(x) was successfully implemented and verified.
 
-```
+
